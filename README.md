@@ -1,10 +1,14 @@
-# AWS-CDK-EC2-Shutdown-Lambda
+# AWS-CDK-Save-Money-Lambda
 
-In this project, I utilized a suite of advanced AWS technologies to deploy a Lambda Function that performs automated maintenance on my AWS infrastructure. I utilized the AWS Python Cloud Development Kit (CDK) to define the AWS resources needed to host the Lambda Function. To ensure continuous delivery, I leveraged CodePipeline and CodeCommit to automatically deploy any updates to the Lambda Function.
+In this project, I leveraged sophisticated AWS technologies to deploy three automated Lambda Functions that provide maintenance and cost notifications for my AWS infrastructure. These resources were defined and managed using the AWS Python Cloud Development Kit (CDK), enhancing the precision and efficiency of the process.
 
-The Lambda Function itself is designed to check for any existing active EC2 instances in each region of my AWS account and stops them. This functionality helps prevent unnecessary resource usage and minimizes costs associated with running inactive EC2 instances. To automate the process, I also added an Amazon EventBridge rule to trigger the Lambda Function at a specified time interval, ensuring regular maintenance of the EC2 instances.
+The first Lambda Function systematically scans all regions of my AWS account, identifying active EC2 instances. It then automatically stops these instances to reduce unnecessary resource consumption, thereby minimizing costs. To ensure consistent operation, I incorporated an Amazon EventBridge rule, triggering this Lambda Function at regular intervals.
 
-By integrating this modern technology stack with AWS's powerful cloud computing infrastructure, I was able to deploy an efficient and cost-effective solution for automated maintenance of my AWS resources.
+The second Lambda Function mirrors the first, but focuses on identifying and stopping active RDS instances across all regions. This step further curtails unnecessary resource usage and cost. An Amazon EventBridge rule was also implemented to automate this process, guaranteeing routine maintenance of the RDS instances.
+
+The third Lambda Function provides a daily cost analysis. By extracting data from the Cost Explorer, it calculates the current charges accrued and emails a daily summary of my AWS balance.
+
+To guarantee seamless delivery and updates to these Lambda Functions, I employed CodePipeline and CodeCommit, which enabled automatic deployment of any modifications. This project represents a comprehensive approach to manage, control, and monitor AWS resource utilization and expenses.
 
 
 
@@ -13,4 +17,4 @@ By integrating this modern technology stack with AWS's powerful cloud computing 
 
 The lambda pipeline is broken down into the architecture below:
 
-![lambda](https://github.com/rjones18/Images/blob/main/Lambda-Pipeline-Diagram.png)
+![lambda](https://github.com/rjones18/Images/blob/main/Lambda-Save-Money.png)
