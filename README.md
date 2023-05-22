@@ -1,4 +1,4 @@
-# AWS-CDK-Save-Money-Lambda
+# AWS-CDK-Cost-Saving-Lambdas
 
 In this project, I leveraged sophisticated AWS technologies to deploy three automated Lambda Functions that provide maintenance and cost notifications for my AWS infrastructure. These resources were defined and managed using the AWS Python Cloud Development Kit (CDK), enhancing the precision and efficiency of the process.
 
