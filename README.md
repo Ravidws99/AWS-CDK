@@ -5,10 +5,8 @@ In this project, I utilized advanced AWS technologies to orchestrate a collectio
 To further bolster the project's reliability and security, I incorporated tools like Snyk for Infrastructure as Code (IaC) scans, Bandit for Lambda security checks, and Pylint for maintaining code quality. The combination of CodePipeline and CodeCommit ensures seamless updates, reflecting any code modifications for a holistic AWS resource management and expenditure oversight.
 
 
-
-
 ## Architecture Breakdown
 
 The lambda pipeline is broken down into the architecture below:
 
-![lambda](https://github.com/rjones18/Images/blob/main/Lambda-Save-Money.png)
+![lambda](https://github.com/rjones18/Images/blob/main/Lambda-Save-Money%20(4).png)
