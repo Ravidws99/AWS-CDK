@@ -9,4 +9,4 @@ class WorkshopPipelineStage(Stage):
     def __init__(self, scope: Construct, id: str, **kwargs):
         super().__init__(scope, id, **kwargs)
 
-        service = CdkWorkshopStack(self, 'WebService')
+        service = CdkWorkshopStack(self, 'Save-Money-Lambdas')

@@ -33,6 +33,16 @@ class CdkWorkshopStack(Stack):
         assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
         role_name = "Lambda-Billing-Role"
     )
+        role4 = iam.Role(self, "Role4",
+        assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
+        role_name = "Lambda-EBS-Snapshot-Role"
+    )
+        
+        role5 = iam.Role(self, "Role5",
+        assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
+        role_name = "Lambda-Elastic-IP-Role"
+    )
+    
         # Attaching Permissions to Roles
         role1.attach_inline_policy(iam.Policy(self, "lambda-ec2-shutdown-policy",
         statements=[iam.PolicyStatement(
@@ -55,11 +65,25 @@ class CdkWorkshopStack(Stack):
             )]
         ))
 
+        role4.attach_inline_policy(iam.Policy(self, "lambda-ebs-snapshot-policy",
+        statements=[iam.PolicyStatement(
+            actions=["ec2:DescribeImages", "ec2:DescribeSnapshots", "ec2:DeleteSnapshot"],
+            resources=['*']
+            )]
+        ))
+
+        role5.attach_inline_policy(iam.Policy(self, "lambda-elastic-ip-policy",
+        statements=[iam.PolicyStatement(
+            actions=["ec2:DescribeAddresses", "ec2:ReleaseAddress"],
+            resources=['*']
+            )]
+        ))
+
         role3.add_managed_policy(iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSNSFullAccess"))
         
         # Create SNS Topic For Billing Lambda
         sns_topic = sns.Topic(self, "CloudBillingSNSTopic")
-        email = "XXXXXXXXXXXXXXX"
+        email = "reggiej3939@gmail.com"
         sns_topic.add_subscription(subscriptions.EmailSubscription(email))
 
         # Defines an AWS Lambda Resource
@@ -88,6 +112,24 @@ class CdkWorkshopStack(Stack):
             role = role3,
             timeout=cdk.Duration.minutes(3)
         )
+        
+        my_lambda4 = _lambda.Function(
+            self, 'ebsHandler',
+            runtime=_lambda.Runtime.PYTHON_3_7,
+            code=_lambda.Code.from_asset('lambda'),
+            handler='ebs.handler',
+            role = role4,
+            timeout=cdk.Duration.minutes(3)
+        )
+
+        my_lambda5 = _lambda.Function(
+            self, 'ipsHandler',
+            runtime=_lambda.Runtime.PYTHON_3_7,
+            code=_lambda.Code.from_asset('lambda'),
+            handler='ips.handler',
+            role = role5,
+            timeout=cdk.Duration.minutes(3)
+        )
 
         # Grant SNS permissions to Lambda
         sns_topic.grant_publish(my_lambda3)
@@ -106,4 +148,6 @@ class CdkWorkshopStack(Stack):
         rule.add_target(targets.LambdaFunction(my_lambda))
         rule.add_target(targets.LambdaFunction(my_lambda2))
         rule2.add_target(targets.LambdaFunction(my_lambda3))
+        rule.add_target(targets.LambdaFunction(my_lambda4))
+        rule.add_target(targets.LambdaFunction(my_lambda5))
 

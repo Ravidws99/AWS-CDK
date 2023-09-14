@@ -5,6 +5,6 @@ from cdk_workshop.pipeline_stack import WorkshopPipelineStack
 
 
 app = cdk.App()
-WorkshopPipelineStack(app, "EC2LambdaPipelineStack")
+WorkshopPipelineStack(app, "CostSavingLambdaPipelineStack")
 
 app.synth()

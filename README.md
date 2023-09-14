@@ -1,14 +1,8 @@
 # AWS-CDK-Cost-Saving-Lambdas
 
-In this project, I leveraged sophisticated AWS technologies to deploy three automated Lambda Functions that provide maintenance and cost notifications for my AWS infrastructure. These resources were defined and managed using the AWS Python Cloud Development Kit (CDK), enhancing the precision and efficiency of the process.
+In this project, I utilized advanced AWS technologies to orchestrate a collection of automated Lambda Functions, targeting enhanced efficiency and cost management for AWS infrastructure. These functions range from managing EC2 and RDS instances, overseeing EBS snapshot maintenance, and Elastic IP Management to delivering a daily cost analysis via insights from Cost Explorer. Harnessing the AWS Python Cloud Development Kit (CDK) has enhanced the precision and efficiency of these deployments. Regular automation is facilitated through Amazon EventBridge, ensuring a proactive approach to resource management.
 
-The first Lambda Function systematically scans the main region of my AWS account, identifying active EC2 instances. It then automatically stops these instances to reduce unnecessary resource consumption, thereby minimizing costs. To ensure consistent operation, I incorporated an Amazon EventBridge rule, triggering this Lambda Function at regular intervals.
-
-The second Lambda Function mirrors the first, but focuses on identifying and stopping active RDS instances my main region. This step further curtails unnecessary resource usage and cost. An Amazon EventBridge rule was also implemented to automate this process, guaranteeing routine maintenance of the RDS instances.
-
-The third Lambda Function provides a daily cost analysis. By extracting data from the Cost Explorer, it calculates the current charges accrued and emails a daily summary of my AWS balance.
-
-To guarantee seamless delivery and updates to these Lambda Functions, I employed CodePipeline and CodeCommit, which enabled automatic deployment of any modifications. This project represents a comprehensive approach to manage, control, and monitor AWS resource utilization and expenses.
+To further bolster the project's reliability and security, I incorporated tools like Snyk for Infrastructure as Code (IaC) scans, Bandit for Lambda security checks, and Pylint for maintaining code quality. The combination of CodePipeline and CodeCommit ensures seamless updates, reflecting any code modifications for a holistic AWS resource management and expenditure oversight.
 
 
 
