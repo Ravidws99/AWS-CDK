@@ -83,7 +83,7 @@ class CdkWorkshopStack(Stack):
         
         # Create SNS Topic For Billing Lambda
         sns_topic = sns.Topic(self, "CloudBillingSNSTopic")
-        email = "reggiej3939@gmail.com"
+        email = "XXXXXXXXXXX"
         sns_topic.add_subscription(subscriptions.EmailSubscription(email))
 
         # Defines an AWS Lambda Resource
